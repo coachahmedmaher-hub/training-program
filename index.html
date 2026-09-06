@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Training Program</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#111;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.viewer{width:100%;max-width:900px;margin:0 auto;padding:10px 6px 24px}
+.page{display:block;width:100%;height:auto;margin:0 auto 10px;pointer-events:none;-webkit-user-drag:none}
+.note{position:fixed;left:12px;bottom:12px;z-index:20;background:rgba(0,0,0,.8);color:#fff;padding:8px 11px;border-radius:8px;font:12px Arial,sans-serif;opacity:0;transition:opacity .2s}
+.note.show{opacity:1}
+@media print{body{display:none!important}}
+</style>
+</head>
+<body>
+<div class="viewer">
+<img class="page" src="pages/page-01.jpg" alt="Page 1" draggable="false">
+<img class="page" src="pages/page-02.jpg" alt="Page 2" draggable="false">
+<img class="page" src="pages/page-03.jpg" alt="Page 3" draggable="false">
+<img class="page" src="pages/page-04.jpg" alt="Page 4" draggable="false">
+<img class="page" src="pages/page-05.jpg" alt="Page 5" draggable="false">
+<img class="page" src="pages/page-06.jpg" alt="Page 6" draggable="false">
+<img class="page" src="pages/page-07.jpg" alt="Page 7" draggable="false">
+<img class="page" src="pages/page-08.jpg" alt="Page 8" draggable="false">
+<img class="page" src="pages/page-09.jpg" alt="Page 9" draggable="false">
+<img class="page" src="pages/page-10.jpg" alt="Page 10" draggable="false">
+<img class="page" src="pages/page-11.jpg" alt="Page 11" draggable="false">
+<img class="page" src="pages/page-12.jpg" alt="Page 12" draggable="false">
+</div>
+<div id="note" class="note">هذا المحتوى للعرض فقط</div>
+<script>
+(function(){
+ const note=document.getElementById('note'); let timer;
+ function warn(){note.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>note.classList.remove('show'),1200)}
+ document.addEventListener('contextmenu',e=>{e.preventDefault();warn()});
+ document.addEventListener('dragstart',e=>e.preventDefault());
+ document.addEventListener('selectstart',e=>e.preventDefault());
+ document.addEventListener('copy',e=>{e.preventDefault();warn()});
+ document.addEventListener('cut',e=>e.preventDefault());
+ document.addEventListener('keydown',e=>{
+   const k=e.key.toLowerCase();
+   if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].includes(k)){e.preventDefault();warn()}
+   if(e.key==='PrintScreen')warn();
+   if(e.ctrlKey&&e.shiftKey&&['i','j','c'].includes(k)){e.preventDefault();warn()}
+   if(e.key==='F12'){e.preventDefault();warn()}
+ });
+})();
+</script>
+</body>
+</html>
