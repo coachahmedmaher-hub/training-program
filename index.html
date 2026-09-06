@@ -28,23 +28,55 @@ html,body{margin:0;padding:0;background:#111;-webkit-user-select:none;user-selec
 <img class="page" src="pages/page-10.jpg" alt="Page 10" draggable="false">
 <img class="page" src="pages/page-11.jpg" alt="Page 11" draggable="false">
 <img class="page" src="pages/page-12.jpg" alt="Page 12" draggable="false">
+<img class="page" src="pages/page-13.jpg" alt="Page 13" draggable="false">
 </div>
+
 <div id="note" class="note">هذا المحتوى للعرض فقط</div>
+
 <script>
 (function(){
  const note=document.getElementById('note'); let timer;
- function warn(){note.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>note.classList.remove('show'),1200)}
- document.addEventListener('contextmenu',e=>{e.preventDefault();warn()});
+
+ function warn(){
+   note.classList.add('show');
+   clearTimeout(timer);
+   timer=setTimeout(()=>note.classList.remove('show'),1200)
+ }
+
+ document.addEventListener('contextmenu',e=>{
+   e.preventDefault();
+   warn();
+ });
+
  document.addEventListener('dragstart',e=>e.preventDefault());
  document.addEventListener('selectstart',e=>e.preventDefault());
- document.addEventListener('copy',e=>{e.preventDefault();warn()});
+
+ document.addEventListener('copy',e=>{
+   e.preventDefault();
+   warn();
+ });
+
  document.addEventListener('cut',e=>e.preventDefault());
+
  document.addEventListener('keydown',e=>{
    const k=e.key.toLowerCase();
-   if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].includes(k)){e.preventDefault();warn()}
-   if(e.key==='PrintScreen')warn();
-   if(e.ctrlKey&&e.shiftKey&&['i','j','c'].includes(k)){e.preventDefault();warn()}
-   if(e.key==='F12'){e.preventDefault();warn()}
+
+   if((e.ctrlKey||e.metaKey)&&['s','p','u','c','x','a'].includes(k)){
+     e.preventDefault();
+     warn();
+   }
+
+   if(e.key==='PrintScreen') warn();
+
+   if(e.ctrlKey&&e.shiftKey&&['i','j','c'].includes(k)){
+     e.preventDefault();
+     warn();
+   }
+
+   if(e.key==='F12'){
+     e.preventDefault();
+     warn();
+   }
  });
 })();
 </script>
